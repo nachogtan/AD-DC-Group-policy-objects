@@ -92,6 +92,20 @@ When configuring the software deployment policy, we selected the .msi file by re
 
 <img width="933" height="296" alt="Screenshot 2025-09-24 125434" src="https://github.com/user-attachments/assets/58020b06-abab-4b01-93ff-04b077a7e424" />
 
+The last step is to link the created GPO to the desired object.
+
+<img width="978" height="663" alt="Screenshot 2025-09-24 130310" src="https://github.com/user-attachments/assets/dfb51a26-b8f0-45bc-aefa-dcd4739b33b2" />
+
+To ensure all policies are applied immediately after being configured, an administrator must manually force a Group Policy update on the client machine. This can be done by running the following command:
+
+```
+gpupdate /force
+```
+
+Once the changes are applied, tools like the Command Prompt (cmd) and PowerShell will no longer be accessible from the client.
+
+A reboot may also be required for certain policies, such as software installations, to take full effect.
+
 ## Repository Structure
 
 ```
