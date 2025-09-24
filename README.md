@@ -70,5 +70,13 @@ For this project, we:
 
 ## Repository Structure
 
+```
+/AD-DC-Group-policy-objects/
+├── README.md 
+├── LICENSE
+├── /screenshots/
+├── /gpo-backups/
+```
+
 
 ## Author
