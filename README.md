@@ -40,17 +40,17 @@ For this project, we configured a GPO to block key actions that could compromise
   - Hide "Installed Updates" page
   - Hide "Programs and Features" page
   - Hide "Windows Features"
-  - Hide the Programs Control Panel
-  - Hide "Installed Updates" page
   - Hide "Programs and Features" page
   - Hide "Windows Features"
   - Hide the Programs Control Panel
   - Prohibit User from manually redirecting Profile Folders
   - Don't run specified Windows applications
+    
     - powershell.exe
     - mmc.exe
     - cmd.exe
     - regedit.exe
+
   - Disallow changing of geographic location
   - Prompt for password on resume from hibernate/suspend
   - All Removable Storage classes: Deny all access
