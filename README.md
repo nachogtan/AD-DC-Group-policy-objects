@@ -57,7 +57,11 @@ For this project, we configured a GPO to block key actions that could compromise
   - Do not display the password reveal button
   - Prevent removable media source for any installation
   - Turn on PowerShell Transcription
-    
+ 
+ <img width="951" height="1103" alt="Screenshot 2025-09-24 113242" src="https://github.com/user-attachments/assets/22a44e41-f67e-43c1-aaf3-8ea479998071" />
+ <img width="939" height="368" alt="Screenshot 2025-09-24 113251" src="https://github.com/user-attachments/assets/a1c0595d-bd96-40f0-863f-3301a1c9b57c" />
+ 
+
 Additionally, we utilized GPOs for centralized software deployment, ensuring that essential applications are automatically installed on client machines without user intervention. We also enforced a strong password policy and manually configured inbound firewall rules to block incoming requests for crucial services such as SSH and RDP.
 
 ### Centralized Software Deployment
@@ -67,6 +71,26 @@ We utilized Group Policy to automate the deployment of essential software to cli
 For this project, we:
 - Deployed `7-Zip` by linking its installer file (`.msi`) to the GPO.
 - Prevented standard users from installing their own software by disabling the use of removable media sources for any installation.
+
+To automatically deploy software to multiple computers, we utilized Group Policy Objects (GPOs) to push application installers directly to the target machines. This process ensures that software is installed consistently and without manual intervention.
+
+To begin, we created a dedicated folder within the SYSVOL shared folder on the domain controller. This is the recommended location for GPO-related files because its contents are automatically replicated across all domain controllers and are accessible to all domain computers via a standard UNC path. Then, 
+
+<img width="669" height="46" alt="Screenshot 2025-09-24 103709" src="https://github.com/user-attachments/assets/f7823d7b-6115-4686-8e9a-d5a31dca5b14" />
+
+<img width="164" height="49" alt="Screenshot 2025-09-24 213207" src="https://github.com/user-attachments/assets/bd2075ce-34af-4dcb-97aa-e4ea14d4e1d0" />
+
+Then we configured the sharing and NTFS permissions for domain computers to ensure that client machines could access the shared folder that contains the .msi binary file.
+
+<img width="479" height="596" alt="Screenshot 2025-09-24 105247" src="https://github.com/user-attachments/assets/a82c1ea5-4777-4792-97e4-1f7092be6336" />
+
+<img width="473" height="595" alt="Screenshot 2025-09-24 105316" src="https://github.com/user-attachments/assets/259a5aff-6a06-454f-b8bd-50d9dfffb727" />
+
+
+When configuring the software deployment policy, we selected the .msi file by referencing its UNC path (e.g., \\corp.com\SYSVOL\corp.com\Policies\Software\7-Zip.msi). This path ensures that the client computers can locate the installer on the network during the policy application process.
+
+
+<img width="933" height="296" alt="Screenshot 2025-09-24 125434" src="https://github.com/user-attachments/assets/58020b06-abab-4b01-93ff-04b077a7e424" />
 
 ## Repository Structure
 
@@ -78,5 +102,5 @@ For this project, we:
 ├── /gpo-backups/
 ```
 
-
 ## Author
+[nachogtan](https://github.com/nachogtan)
